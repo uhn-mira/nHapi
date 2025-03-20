@@ -1,16 +1,10 @@
 namespace NHapi.Base.Model
 {
     using System;
-#if !NET35
     using System.Collections.Concurrent;
-#endif
-
     using NHapi.Base;
     using NHapi.Base.Log;
     using NHapi.Base.Parser;
-#if NET35
-    using NHapi.Base.Util;
-#endif
 
     /// <summary>
     /// A generic HL7 message, meant for parsing message with unrecognized structures
@@ -19,12 +13,7 @@ namespace NHapi.Base.Model
     /// <author>Bryan Tripp.</author>
     public abstract class GenericMessage : AbstractMessage
     {
-        // TODO: when we only target netstandard2.0 and above consider converting to ConcurrentDictionary
-#if NET35
-        private static readonly SynchronizedCache<string, Type> GenericMessages = new SynchronizedCache<string, Type>();
-#else
         private static readonly ConcurrentDictionary<string, Type> GenericMessages = new ConcurrentDictionary<string, Type>();
-#endif
 
         /// <summary>
         /// Creates a new instance of GenericMessage.

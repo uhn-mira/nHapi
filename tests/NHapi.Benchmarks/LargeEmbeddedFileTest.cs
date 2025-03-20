@@ -10,9 +10,8 @@ using NHapi.Model.V251.Message;
 [MemoryDiagnoser]
 [JsonExporterAttribute.FullCompressed]
 [MarkdownExporterAttribute.GitHub]
-[SimpleJob(RuntimeMoniker.Net462, baseline: true)]
-[SimpleJob(RuntimeMoniker.Net60)]
-[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net48, baseline: true)]
+[SimpleJob(RuntimeMoniker.Net10_0)]
 public class LargeEmbeddedFileTest
 {
     private const string Er7WithLargeEmbeddedFile =

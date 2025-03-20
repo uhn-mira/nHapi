@@ -78,11 +78,7 @@ namespace NHapi.Base.Llp
         /// <exception cref="EncodingNotSupportedException"><paramref name="hl7EncodingName"/> is unknown.</exception>
         public static Encoding FromHl7Encoding(string hl7EncodingName)
         {
-#if NET35
-            if (string.IsNullOrEmpty(hl7EncodingName) || hl7EncodingName.Trim().Length == 0)
-#else
             if (string.IsNullOrWhiteSpace(hl7EncodingName))
-#endif
             {
                 throw new ArgumentException("Should not be null empty or white-space.", nameof(hl7EncodingName));
             }

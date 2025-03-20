@@ -64,11 +64,7 @@ namespace NHapi.Base.PreParser
             messageMask ??= new List<DatumPath> { new () };
             results = new Dictionary<string, string>();
 
-#if NET35
-            if (string.IsNullOrEmpty(message) || message.Trim().Length == 0)
-#else
             if (string.IsNullOrWhiteSpace(message))
-#endif
             {
                 return false;
             }

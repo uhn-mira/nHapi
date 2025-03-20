@@ -28,17 +28,12 @@
 namespace NHapi.Base.Parser
 {
     using System;
-#if !NET35
     using System.Collections.Concurrent;
-#endif
     using System.Configuration;
     using System.Linq;
     using System.Text;
 
     using NHapi.Base.Model.Configuration;
-#if NET35
-    using NHapi.Base.Util;
-#endif
 
     /// <summary>
     /// Handles "escaping" and "un-escaping" of text according to the HL7 escape sequence rules
@@ -53,11 +48,7 @@ namespace NHapi.Base.Parser
         /// Is used to cache multiple <see cref="EncodingLookups"/> keyed on <see cref="EncodingCharacters"/>
         /// for quick re-use.
         /// </summary>
-#if NET35
-        private static readonly SynchronizedCache<EncodingCharacters, EncodingLookups> VariousEncChars = new SynchronizedCache<EncodingCharacters, EncodingLookups>();
-#else
         private static readonly ConcurrentDictionary<EncodingCharacters, EncodingLookups> VariousEncChars = new ConcurrentDictionary<EncodingCharacters, EncodingLookups>();
-#endif
 
         [Obsolete("This method has been replaced by 'EscapeText'.")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
@@ -293,11 +284,7 @@ namespace NHapi.Base.Parser
 
             public char[] SpecialCharacters { get; } = new char[8];
 
-#if NET35
-            public SynchronizedCache<char, string> EscapeSequences { get; } = new SynchronizedCache<char, string>();
-#else
             public ConcurrentDictionary<char, string> EscapeSequences { get; } = new ConcurrentDictionary<char, string>();
-#endif
 
             private LineFeedHexadecimal LineFeedHexadecimal { get; set; } = LineFeedHexadecimal.X0A;
 

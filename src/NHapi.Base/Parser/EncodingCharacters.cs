@@ -64,11 +64,8 @@ namespace NHapi.Base.Parser
             FieldSeparator = fieldSeparator;
 
             encChars = new char[4];
-#if NET35
-            if (string.IsNullOrEmpty(encodingCharacters) || encodingCharacters.Trim().Length == 0)
-#else
+
             if (string.IsNullOrWhiteSpace(encodingCharacters))
-#endif
             {
                 encChars[0] = '^';
 
